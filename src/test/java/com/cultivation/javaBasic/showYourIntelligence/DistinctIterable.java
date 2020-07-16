@@ -35,12 +35,12 @@ class DistinctIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        throw new NotImplementedException();
+        return iterator.hasNext();
     }
 
     @Override
     public E next() {
-        throw new NotImplementedException();
+        return iterator.next();
     }
     // --end->
 }

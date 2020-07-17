@@ -28,19 +28,29 @@ class DistinctIterator<E> implements Iterator<E> {
     // <--start
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final Iterator<E> iterator;
+    private ArrayList<E> items;
+    private int index;
 
     DistinctIterator(Iterator<E> iterator) {
         this.iterator = iterator;
+        items = new ArrayList<>();
     }
 
     @Override
     public boolean hasNext() {
-        return iterator.hasNext();
+        while (iterator.hasNext()) {
+            E item = iterator.next();
+            if (!items.contains(item)) {
+                items.add(item);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public E next() {
-        return iterator.next();
+        return items.get(index++);
     }
     // --end->
 }
